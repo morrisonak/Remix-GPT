@@ -1,41 +1,51 @@
-# Welcome to Remix!
+# Project Setup Guide
 
-- [Remix Docs](https://remix.run/docs)
+Rename the `.env.example` file to `.env` and fill in the required values.
 
-## Fly Setup
+## Clerk Configuration
 
-1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
+### Sign Up for Clerk
 
-2. Sign up and log in to Fly
+[Sign up for a free Clerk account](https://clerk.com/sign-up).
 
-```sh
-flyctl auth signup
+### Create an Application
+
+Navigate to the Clerk dashboard and create a new application. Choose the authentication methods that suit your needs.
+
+### Generate JWT Template
+
+1. In the JWT Templates section of the Clerk dashboard, click on **+ New template**.
+2. Choose "Convex" from the options.
+3. Copy the Issuer URL displayed in the Issuer input field.
+4. Click **Apply Changes**.
+
+![JWT Template Configuration](public/jwt.png)
+
+### Create Auth Config
+
+Create a new file named `auth.config.js` inside the `convex` folder. This file will contain server-side configurations for token validation.
+
+convex/auth.config.js
+
+```javascript
+export default {
+  providers: [
+    {
+      domain: "https://your-issuer-url.clerk.accounts.dev/",
+      applicationID: "convex",
+    },
+  ]
+};
 ```
 
-3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
+## Start the Dev Server
 
-```sh
-flyctl launch
-```
-
-## Development
-
-From your terminal:
-
-```sh
+```bash
 npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+and on a seperate terminal run
 
-## Deployment
-
-If you've followed the setup instructions already, all you need to do is run this:
-
-```sh
-npm run deploy
+```bash
+npx convex dev
 ```
-
-You can run `flyctl info` to get the url and ip address of your server.
-
-Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.
