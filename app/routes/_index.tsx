@@ -54,6 +54,8 @@ const NAME = user ? `${user.firstName} ${user.lastName} ` : "Unknown";
   
     <h1 className="text-4xl font-bold text-center text-white">Remix GPT Chat</h1>
     <h2 className="text-xl font-semibold text-center text-gray-300">Use @gpt to call the LLM.</h2>
+    <h2 className="text-xl font-semibold text-center text-gray-300">@memory to save a memory</h2>
+    <h2 className="text-xl font-semibold text-center text-gray-300">@recall to display stored memories.</h2>
     <p className="text-center text-gray-400">
       Connected as <strong className="font-semibold text-white"> {NAME} </strong>
     </p>
